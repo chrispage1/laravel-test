@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('questionnaire/{questionnaire}', [QuestionnaireController::class, 'single'])->name('questionnaire');
+Route::get('questionnaire/{questionnaire:slug}', [QuestionnaireController::class, 'single'])->name('questionnaire');
+
+Route::post('questionnaire/submit', [QuestionnaireController::class, 'store']);

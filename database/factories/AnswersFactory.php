@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Questionnaire;
+use App\Models\Answer;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,10 +17,10 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(Questionnaire::class, function (Faker $faker) {
+$factory->define(Answer::class, function (Faker $faker) {
     return [
-        'name' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'slug' => $faker->slug(),
-        'open' => 0,
+        'question_id' => 1,
+        'answer' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'order' => $faker->numberBetween(1, 5)
     ];
 });

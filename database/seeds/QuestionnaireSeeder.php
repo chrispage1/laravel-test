@@ -11,16 +11,28 @@ class QuestionnaireSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Questionnaire::class, 3)->create()->each(
-            function ($questionnaire) {
-                $questionnaire->questions()->savemany(
-                    factory(App\Models\Question::class, 10)->make(
-                        [
-                            'questionnaire_id' => $questionnaire->id,
-                        ]
+        factory(App\Models\Questionnaire::class, 3)->create()
+            ->each(
+                function ($questionnaire) {
+                    $questionnaire->questions()->savemany(
+                        factory(App\Models\Question::class, 5)->make(
+                            [
+                                'questionnaire_id' => $questionnaire->id,
+                            ]
+                        )
                     )
-                );
-            }
-        );
+                        ->each(
+                            function ($question) {
+                                $question->answers()->savemany(
+                                    factory(App\Models\Answer::class, 3)->make(
+                                        [
+                                            'question_id' => $question->id,
+                                        ]
+                                    )
+                                );
+                            }
+                        );
+                }
+            );
     }
 }

@@ -8,6 +8,11 @@ class Question extends Model
 {
     public function questionnaire()
     {
-        return $this->belongsTo('App/Models/Questionnaire');
+        return $this->belongsTo('App\Models\Questionnaire');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
     }
 }
